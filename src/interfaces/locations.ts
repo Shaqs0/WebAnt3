@@ -5,3 +5,10 @@ export interface Location {
     dimension: string;
     residents: string[];
 }
+
+export interface ApiResponse {
+  info: {
+    next: string | null;
+  };
+  results: Location[];
+}
