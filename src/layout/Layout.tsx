@@ -15,7 +15,7 @@ export function Layout() {
 			<header className={styles.head}>
 				<div className={styles.headerLogo}>
 					<Link to="/">
-						<img src="src/images/icons/header_logo.svg" alt="Rick and Morty Logo" />
+						<img src="src/assets/icons/header_logo.svg" alt="Rick and Morty Logo" />
 					</Link>
 				</div>
 				<div 

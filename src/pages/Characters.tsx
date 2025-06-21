@@ -3,6 +3,7 @@ import { useCharacters } from '../hooks/useCharacters';
 import styles from '../styles/Characters.module.css';
 import { CharacterCard } from '../components/ui/CharactersCard';
 import { Filters } from '../components/ui/Filters';
+import SvgIcon from '../components/ui/SvgIcon';
 
 export function Characters() {
   const [filters, setFilters] = useState({
@@ -35,7 +36,7 @@ export function Characters() {
   return (
     <main className={styles.mainContent}>
       <div className={styles.imgContainer}>
-        <img src="./src/images/characters.png" alt="Characters banner" />
+        <img src="src/assets/images/characters.png" alt="Characters banner" />
       </div>
 
       <Filters 
@@ -45,7 +46,12 @@ export function Characters() {
         toggleModal={toggleModal}
       />
 
-      {error && <div className={styles.error}>{error}</div>}
+      {error && (
+        <div className={styles.error}>
+          <SvgIcon iconUrl='src/assets/icons/close_24px.svg' width={20} height={20} />
+          {error}
+        </div>
+      )}
 
       {loading && page === 1 ? (
         <div className={styles.loader}>
@@ -62,7 +68,12 @@ export function Characters() {
                 />
               ))
             ) : (
-              !loading && <div className={styles.noResults}>No characters found</div>
+              !loading && (
+                <div className={styles.noResults}>
+                  <SvgIcon iconUrl='src/assets/icons/search_icon.svg' width={40} height={40} />
+                  No characters found
+                </div>
+              )
             )}
           </div>
 
