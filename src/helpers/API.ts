@@ -1,0 +1,1 @@
+export const PREFIX = 'https://rickandmortyapi.com/api'
