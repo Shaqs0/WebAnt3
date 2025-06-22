@@ -1,0 +1,223 @@
+/* LocationDetails.module.css */
+.loading {
+  padding: 20px;
+  font-family: "Karla", sans-serif;
+}
+
+.error {
+  padding: 20px;
+  font-family: "Karla", sans-serif;
+  color: red;
+}
+
+.locationInfo {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.locationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 2rem;
+  gap: 20px;
+}
+
+.goBack {
+  position: absolute;
+  left: 2rem;
+  text-decoration: none;
+  color: #000;
+  font-family: Karla;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.goBackContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.backArrow {
+  width: 24px;
+  height: 24px;
+}
+
+.locationName {
+  color: #081F32;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.locationDetails {
+  display: flex;
+  justify-content: center;
+  gap: 224px;
+}
+
+.locationType {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: #6E798C;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.locationType strong {
+  color: #081F32;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; 
+  letter-spacing: 0.15px;
+}
+
+.locationDimension {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: #6E798C;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.locationDimension strong {
+  color: #081F32;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; 
+  letter-spacing: 0.15px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 2rem; 
+  box-sizing: border-box;
+}
+
+.residentsTitle {
+  color: #8E8E93;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; 
+  letter-spacing: 0.15px;
+  width: 100%;
+  text-align: left; 
+  margin: 10px 0; 
+  margin-bottom: -8px;
+}
+
+.residentsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.residentCard {
+  display: flex;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+}
+
+.residentCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.residentCard img {
+  width: 100%;
+  height: 224px;
+  object-fit: cover;
+}
+
+.residentInfo {
+  padding: 1rem;
+}
+
+.residentInfo h3 {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  margin-bottom: 8px;
+}
+
+.residentCard p {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+}
+
+@media (max-width: 1024px) {
+  .residentsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .residentsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .goBackContent {
+    margin-bottom: 65px;
+  }
+}
+
+@media (max-width: 480px) {
+  .residentsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .locationDetails {
+    gap: 122px;
+  }
+}

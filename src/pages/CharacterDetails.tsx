@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
 import axios from 'axios';
 import type { Character } from '../interfaces/character';
 import type { Episode } from '../interfaces/episode';
@@ -14,31 +12,23 @@ export const CharacterDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reduxCharacter = useSelector((state: RootState) =>
-    state.characters.characters.find((c) => c.id.toString() === id) || 
-    state.characters.selectedCharacter
-  );
-
   useEffect(() => {
     const loadCharacter = async () => {
+      if (!id) return;
+      
       try {
         setIsLoading(true);
         setError(null);
 
-        if (reduxCharacter && reduxCharacter.id.toString() === id) {
-          setCharacter(reduxCharacter);
-        } else {
-          const characterRes = await axios.get<Character>(
-            `https://rickandmortyapi.com/api/character/${id}`
-          );
-          setCharacter(characterRes.data);
-        }
+        const characterRes = await axios.get<Character>(
+          `https://rickandmortyapi.com/api/character/${id}`
+        );
+        setCharacter(characterRes.data);
 
-        if (character?.episode) {
-          const episodeRequests = character.episode.map(url => axios.get<Episode>(url));
-          const episodeResponses = await Promise.all(episodeRequests);
-          setEpisodes(episodeResponses.map(res => res.data));
-        }
+        const episodeUrls = characterRes.data.episode;
+        const episodeRequests = episodeUrls.map(url => axios.get<Episode>(url));
+        const episodeResponses = await Promise.all(episodeRequests);
+        setEpisodes(episodeResponses.map(res => res.data));
       } catch (err) {
         console.error("Error loading character:", err);
         setError('Failed to load character information');
@@ -48,7 +38,7 @@ export const CharacterDetails = () => {
     };
 
     loadCharacter();
-  }, [id, reduxCharacter]);
+  }, [id]);
 
   if (isLoading) {
     return (
@@ -84,7 +74,6 @@ export const CharacterDetails = () => {
           className={styles.characterAvatar}
         />
         <h1 className={styles.characterName}>{character.name}</h1>
-  
       </div>
 
       <div className={styles.characterInfoSections}>
@@ -111,7 +100,7 @@ export const CharacterDetails = () => {
                 <strong>Location</strong>
                 {character.location.url ? (
                   <Link 
-                    to={`/location/${character.location.url.split('/').pop()}`}
+                    to={`/locations/${character.location.url.split('/').pop()}`}
                     className={styles.characterDetailsLocation}
                   >
                     <span>{character.location.name}</span>
@@ -136,7 +125,7 @@ export const CharacterDetails = () => {
               {episodes.map(ep => (
                 <li className={styles.episodeItem} key={ep.id}>
                   <Link 
-                    to={`/episode/${ep.id}`}
+                    to={`/episodes/${ep.id}`}
                     className={styles.episodeLink}
                   >
                     <div className={styles.episodeContent}>

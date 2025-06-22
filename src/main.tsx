@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './layout/Layout';
-import { CharacterDetails, Characters, EpisodeDetails, Episodes, Locations } from './pages';
+import { CharacterDetails, Characters, EpisodeDetails, Episodes, LocationDetails, Locations } from './pages';
 import { Provider } from 'react-redux'
 import { store } from './store'
 
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
 			{
 				path: '/episodes/:id',
 				element: <EpisodeDetails/>
+			},
+			{
+				path: '/locations/:id',
+				element: <LocationDetails/>
 			}
 		]
 	}
