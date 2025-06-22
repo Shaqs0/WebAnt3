@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type {ChangeEvent} from 'react'
+import type { ChangeEvent } from 'react';
 import styles from '../../styles/Characters.module.css';
 import { useDispatch } from 'react-redux';
 import { setFilters, resetFilters } from '../../features/charactersSlice';
@@ -48,6 +48,36 @@ export function Filters({
     onChange(e);
   };
 
+  const speciesOptions = [
+    { value: '', label: 'Species' },
+    { value: 'Human', label: 'Human' },
+    { value: 'Alien', label: 'Alien' },
+    { value: 'Humanoid', label: 'Humanoid' },
+    { value: 'Poopybutthole', label: 'Poopybutthole' },
+    { value: 'Mythological', label: 'Mythological' },
+    { value: 'Unknown', label: 'Unknown' },
+    { value: 'Animal', label: 'Animal' },
+    { value: 'Disease', label: 'Disease' },
+    { value: 'Robot', label: 'Robot' },
+    { value: 'Cronenberg', label: 'Cronenberg' },
+    { value: 'Planet', label: 'Planet' }
+  ];
+
+  const genderOptions = [
+    { value: '', label: 'Gender' },
+    { value: 'Male', label: 'Male' },
+    { value: 'Female', label: 'Female' },
+    { value: 'Genderless', label: 'Genderless' },
+    { value: 'Unknown', label: 'Unknown' }
+  ];
+
+  
+  const statusOptions = [
+    { value: '', label: 'Status' },
+    { value: 'Alive', label: 'Alive' },
+    { value: 'Dead', label: 'Dead' },
+    { value: 'Unknown', label: 'Unknown' }
+  ];
 
   return (
     <>
@@ -77,11 +107,13 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Species</option>
-              <option value="Human">Human</option>
-              <option value="Alien">Alien</option>
+              {speciesOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
-               <SvgIcon 
+            <SvgIcon 
               iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
@@ -95,9 +127,11 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              {genderOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
             <SvgIcon 
               iconUrl={ArrowDropDown} 
@@ -113,9 +147,11 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Status</option>
-              <option value="alive">Alive</option>
-              <option value="dead">Dead</option>
+              {statusOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
             <SvgIcon 
               iconUrl={ArrowDropDown} 
@@ -128,10 +164,10 @@ export function Filters({
           onClick={toggleModal}
           type="button"
         >
-           <SvgIcon 
-              iconUrl={FilterList}
-              className={styles.searchIcon} 
-            />
+          <SvgIcon 
+            iconUrl={FilterList}
+            className={styles.searchIcon} 
+          />
           ADVANCED FILTERS
         </button>
       </div>
@@ -147,9 +183,9 @@ export function Filters({
               type="button"
             >
               <SvgIcon 
-              iconUrl={CloseIcon} 
-              className={styles.selectArrow} 
-            />
+                iconUrl={CloseIcon} 
+                className={styles.selectArrow} 
+              />
             </button>
           </div>
 
@@ -161,11 +197,13 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Species</option>
-              <option value="Human">Human</option>
-              <option value="Alien">Alien</option>
+              {speciesOptions.map(option => (
+                <option key={`modal-${option.value}`} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
-              <SvgIcon 
+            <SvgIcon 
               iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
@@ -179,11 +217,13 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Genders</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              {genderOptions.map(option => (
+                <option key={`modal-${option.value}`} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
-             <SvgIcon 
+            <SvgIcon 
               iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
@@ -197,11 +237,13 @@ export function Filters({
               onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
-              <option value="">Statuses</option>
-              <option value="alive">Alive</option>
-              <option value="dead">Dead</option>
+              {statusOptions.map(option => (
+                <option key={`modal-${option.value}`} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
-             <SvgIcon 
+            <SvgIcon 
               iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />

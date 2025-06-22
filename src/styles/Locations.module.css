@@ -291,6 +291,87 @@
   color: #666;
 }
 
+ .locationInfo {
+     background: #FAFAFA;
+box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.14);
+  padding: 20px;
+  width: 100%;
+  max-width: 240px;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  width: 240px;
+    height: 128px;
+ }
+
+ .locationInfo h3 {
+ color: rgba(0, 0, 0, 0.87);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    margin-top: -2px;
+
+ }
+
+ .locationInfo p {
+   color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+    margin-top: -10px;
+
+ }
+
+
+.loadMoreContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+    margin-bottom: 44px;
+}
+
+.loadMoreButton {
+    display: flex;
+    width: 154px;
+    height: 36px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: #2196F3;
+    background-color: white;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; 
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background: #F2F9FE;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.20), 0px 1px 18px 0px rgba(0, 0, 0, 0.12), 0px 6px 10px 0px rgba(0, 0, 0, 0.14);
+}
+
+.loadMoreButton:hover {
+    background: #71c1fa;
+    color: white;
+}
+
+.loadMoreButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
 @media (max-width: 1100px) {
   .locationsContainer {
     grid-template-columns: repeat(3, 1fr);

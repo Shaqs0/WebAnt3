@@ -61,8 +61,8 @@ export const Episodes = () => {
           >
             <div className={styles.episodeInfo}>
               <h3>{episode.name}</h3>
-              <p>{episode.episode}</p>
               <small>{episode.air_date}</small>
+              <p>{episode.episode}</p>
             </div>
           </Link>
         ))}

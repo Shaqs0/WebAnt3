@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
 
 .imgContainer {
@@ -53,7 +54,7 @@
 .searchIcon {
     position: absolute;
     left: 16px;
-    top: 30%;
+    top: 50%;
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
@@ -78,13 +79,15 @@
     width: 240px;
     height: 128px;
     flex-shrink: 0;
-    background-color: #FAFAFA;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    padding: 20px;
-    text-align: center;
+      background: #FAFAFA;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.14);
+        padding: 20px;
+        width: 100%;
+        max-width: 240px;
+        text-align: center;
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+        cursor: pointer;
 }
 
 .episodeCard:hover {
@@ -94,7 +97,7 @@
 
 .episodeCard h3 {
     color: rgba(0, 0, 0, 0.87);
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 30px;
@@ -195,7 +198,7 @@
     }
     
     .episodesContainer {
-        margin-top: 26px;
+        margin-top: 48px;
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -215,8 +218,8 @@
     }
     
     .searchIcon {
-        top: 35%;
-        left: 10%;
+        top: 47.5%;
+        left: 2.5%;
     }
     
     .episodeCard {
