@@ -113,6 +113,14 @@
     line-height: 21px;
     letter-spacing: 0.25px;
     margin-top: 8px;
+    color: var(--Black-Medium-Emphasis, rgba(0, 0, 0, 0.60));
+text-align: center;
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 21px;
+letter-spacing: 0.25px;
 }
 
 .episodeCard small {
@@ -171,6 +179,10 @@
     color: #d32f2f;
     text-align: center;
     margin: 20px 0;
+}
+
+.episodesContainer {
+    margin-bottom: -10px;
 }
 
 @media (max-width: 1100px) {

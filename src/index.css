@@ -31,6 +31,14 @@ ul {
   list-style: none; 
 }
 
+input:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
 .loader {
   display: flex;
   justify-content: center;

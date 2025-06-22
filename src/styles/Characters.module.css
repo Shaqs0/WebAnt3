@@ -355,6 +355,7 @@
     text-transform: uppercase;
     margin-bottom: 19px;
     box-sizing: border-box;
+    margin-top: 20px;
 }
 
 .applyFiltersBtn:active {

@@ -166,6 +166,8 @@ export function Filters({
           <SvgIcon 
             iconUrl={FilterList}
             className={styles.searchIcon} 
+            width={18.6}
+            height={12}
           />
           ADVANCED FILTERS
         </button>
@@ -241,6 +243,12 @@ export function Filters({
               className={styles.selectArrow} 
             />
           </div>
+          <button 
+              onClick={toggleModal}
+              className={styles.applyFiltersBtn} 
+            >
+              APPLY
+            </button>
         </div>
       </div>
     </>

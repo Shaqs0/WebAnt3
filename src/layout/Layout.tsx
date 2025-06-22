@@ -53,6 +53,7 @@ export function Layout() {
 				</nav>
 			</header>
 			<Outlet/>
+			<footer></footer>
 		</div>
 	);
 }

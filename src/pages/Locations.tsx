@@ -17,7 +17,6 @@ export const Locations = () => {
     locations,
     loading,
     hasMore,
-    error,
     filters,
     filterOptions
   } = useSelector((state: RootState) => state.locations);
@@ -83,16 +82,6 @@ export const Locations = () => {
     setShowModal(false);
   };
 
-  if (error) {
-    return (
-      <main className={styles.mainContent}>
-        <div className={styles.errorContainer}>
-          <p className={styles.errorText}>{error}</p>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className={styles.mainContent}>
       <div className={styles.imgContainer}>
@@ -142,7 +131,8 @@ export const Locations = () => {
           </div>
         </form>
         <button className={styles.mobileFiltersBtn} onClick={openModal}>
-         <SvgIcon iconUrl={FilterList} className={styles.searchIcon} />
+         <SvgIcon iconUrl={FilterList} className={styles.searchIcon} width={18.6}
+            height={12}/>
           ADVANCED FILTERS
         </button>
       </div>

@@ -203,6 +203,23 @@
   animation: spin 1s linear infinite;
 }
 
+.goBack span {
+  color: #000;
+
+  font-family: Karla;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.goBack {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

@@ -5,7 +5,7 @@ import type { Character } from '../interfaces/character';
 import type { Episode } from '../interfaces/episode';
 import styles from '../styles/CharacterDetails.module.css';
 import SvgIcon from '../components/ui/SvgIcon';
-import { ChevronArrow } from '../assets/icons';
+import { ArrowBack, ChevronArrow } from '../assets/icons';
 
 export const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -66,7 +66,8 @@ export const CharacterDetails = () => {
   return (
     <div className={styles.characterDetail}>
       <Link to="/" className={styles.goBack}>
-        ← GO BACK
+          <SvgIcon iconUrl={ArrowBack} className={styles.backIcon} />
+          <span>GO BACK</span>
       </Link>
 
       <div className={styles.characterHeader}>
