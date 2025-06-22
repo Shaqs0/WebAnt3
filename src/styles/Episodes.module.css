@@ -1,3 +1,4 @@
+/* styles/Episodes.module.css */
 .mainContent {
     display: flex;
     justify-content: center;
@@ -10,15 +11,15 @@
     margin-bottom: 16px;
     max-width: 269.552px;
     max-height: 210px;
-    width: 100%;
-    height: auto;
+    width: 100%; 
+    height: auto; 
 }
 
 .imgContainer img {
     display: block;
     line-height: 0;
-    width: 100%;
-    height: auto;
+    width: 100%; 
+    height: auto; 
     max-width: 269.552px;
     max-height: 210px;
     object-fit: contain;
@@ -30,13 +31,6 @@
     margin-top: 1rem;
     margin-bottom: -50px;
     width: 100%;
-}
-
-.filtersForm {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
 }
 
 .searchInputContainer {
@@ -76,7 +70,7 @@
     margin-top: 45px;
 }
 
-.episodesCard {
+.episodeCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,51 +78,45 @@
     width: 240px;
     height: 128px;
     flex-shrink: 0;
-    background: #FAFAFA;
+    background-color: #FAFAFA;
     border-radius: 8px;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 
-                0px 3px 4px 0px rgba(0, 0, 0, 0.12), 
-                0px 2px 4px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
     cursor: pointer;
-    text-align: center;
     padding: 20px;
-}
-
-.episodesCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
-}
-
-.episodesCard strong {
-    color: rgba(0, 0, 0, 0.87);
     text-align: center;
+}
+
+.episodeCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.episodeCard h3 {
+    color: rgba(0, 0, 0, 0.87);
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0.15px;
-    margin-bottom: -50px;
+    margin-bottom: 8px;
 }
 
-.episodesCard p {
-    color: rgba(0, 0, 0, 0.60);
-    text-align: center;
+.episodeCard p {
+    color: rgba(0, 0, 0, 0.6);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: 0.25px;
-    margin-top: 30px;
-    margin-bottom: -15px;
+    margin-top: 8px;
 }
 
-.episodesCard em {
-    color: rgba(0, 0, 0, 0.60);
-    text-align: center;
+.episodeCard small {
+    color: rgba(0, 0, 0, 0.6);
     font-size: 14px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 21px;
     letter-spacing: 0.25px;
 }
@@ -140,7 +128,7 @@
     margin-bottom: 44px;
 }
 
-.loadMoreBtn {
+.loadMoreButton {
     display: flex;
     width: 154px;
     height: 36px;
@@ -156,53 +144,30 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px;
+    line-height: 16px; 
     letter-spacing: 1.25px;
     text-transform: uppercase;
     cursor: pointer;
     border: none;
     border-radius: 4px;
     background: #F2F9FE;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.20), 
-                0px 1px 18px 0px rgba(0, 0, 0, 0.12), 
-                0px 6px 10px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.20), 0px 1px 18px 0px rgba(0, 0, 0, 0.12), 0px 6px 10px 0px rgba(0, 0, 0, 0.14);
 }
 
-.loadMoreBtn:hover {
+.loadMoreButton:hover {
     background: #71c1fa;
     color: white;
 }
 
-.loadMoreBtn:disabled {
+.loadMoreButton:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
 
-.episodesNoResults {
-    font-style: italic;
-    color: #888;
-    margin-top: 20px;
+.error {
+    color: #d32f2f;
     text-align: center;
-}
-
-.loader {
-    display: flex;
-    justify-content: center;
     margin: 20px 0;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #2196F3;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 1100px) {
@@ -214,7 +179,7 @@
 @media (max-width: 868px) {
     .searchInputContainer {
         width: 90%;
-        max-width: 500px;
+        max-width: 500px; 
     }
     
     .searchInput {
@@ -243,7 +208,6 @@
     
     .searchInputContainer {
         width: 312px;
-        padding: 16px;
     }
 
     .episodesContainer {
@@ -254,8 +218,8 @@
         top: 35%;
         left: 10%;
     }
-  
-    .episodesCard {
+    
+    .episodeCard {
         width: 100%;
         max-width: none;
     }

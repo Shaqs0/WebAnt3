@@ -1,39 +1,30 @@
-import { useState, useEffect, type SetStateAction } from 'react';
-import { useEpisodes } from '../hooks/useEpisodes';
-import { EpisodeCard } from '../components/ui/EpisodeCard';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import type { RootState, AppDispatch } from '../store';
+import { fetchEpisodes, setSearchQuery } from '../features/episodesSlice';
 import styles from '../styles/Episodes.module.css';
 
-export function Episodes() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const { 
-    episodes, 
-    loading, 
-    hasMore, 
-    error, 
-    loadEpisodes,
-    currentPage
-  } = useEpisodes();
+export const Episodes = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const {
+    episodes,
+    loading,
+    hasMore,
+    error,
+    searchQuery,
+    currentPage,
+  } = useSelector((state: RootState) => state.episodes);
 
-  const handleSearch = (e: { target: { value: SetStateAction<string>; }; }) => {
-    setSearchQuery(e.target.value);
-  };
+  useEffect(() => {
+    dispatch(fetchEpisodes({ searchQuery, page: 1 }));
+  }, [searchQuery, dispatch]);
 
   const handleLoadMore = () => {
     if (!loading && hasMore) {
-      loadEpisodes(searchQuery, currentPage + 1);
-      setTimeout(() => {
-        window.scrollBy({ top: 400, behavior: 'smooth' });
-      }, 300);
+      dispatch(fetchEpisodes({ searchQuery, page: currentPage + 1 }));
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      loadEpisodes(searchQuery, 1);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
 
   return (
     <main className={styles.mainContent}>
@@ -42,64 +33,51 @@ export function Episodes() {
       </div>
 
       <div className={styles.filtersContainer}>
-        <form className={styles.filtersForm} onSubmit={(e) => e.preventDefault()}>
-          <div className={styles.searchInputContainer}>
-            <img 
-              src="/src/images/icons/search_icon.svg" 
-              alt="Search" 
-              className={styles.searchIcon} 
-            />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearch}
-              className={styles.searchInput}
-              placeholder="Name or episode (ex. S01E01)"
-            />
-          </div>
-        </form>
+        <div className={styles.searchInputContainer}>
+          <img 
+            src="/src/images/icons/search_icon.svg" 
+            alt="Search" 
+            className={styles.searchIcon} 
+          />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+            placeholder="Name or episode (ex. S01E01)"
+            className={styles.searchInput}
+          />
+        </div>
       </div>
 
-      {error && (
-        <p className={styles.episodesNoResults}>
-          Failed to load episodes. Please try again.
-        </p>
-      )}
-
-      {!error && episodes.length === 0 && !loading && (
-        <p className={styles.episodesNoResults}>
-          No episodes found matching your search.
-        </p>
-      )}
+      {error && <p className={styles.error}>{error}</p>}
 
       <div className={styles.episodesContainer}>
         {episodes.map((episode) => (
-          <EpisodeCard 
-            key={`${episode.id}-${episode.episode}`}
-            episode={episode} 
-          />
+          <Link 
+            to={`/episodes/${episode.id}`} 
+            key={episode.id} 
+            className={styles.episodeCard}
+          >
+            <div className={styles.episodeInfo}>
+              <h3>{episode.name}</h3>
+              <p>{episode.episode}</p>
+              <small>{episode.air_date}</small>
+            </div>
+          </Link>
         ))}
       </div>
 
-      <div className={styles.loadMoreContainer}>
-        {hasMore ? (
+      {hasMore && (
+        <div className={styles.loadMoreContainer}>
           <button 
-            onClick={handleLoadMore}
-            className={styles.loadMoreBtn}
+            onClick={handleLoadMore} 
             disabled={loading}
+            className={styles.loadMoreButton}
           >
-            {loading ? 'LOADING...' : 'LOAD MORE'}
+            {loading ? 'Loading...' : 'LOAD MORE'}
           </button>
-        ) : (
-          episodes.length > 0 && <p>No more episodes to load</p>
-        )}
-      </div>
-
-      {loading && episodes.length === 0 && (
-        <div className={styles.loader}>
-          <div className={styles.spinner}></div>
         </div>
       )}
     </main>
   );
-}
+};
