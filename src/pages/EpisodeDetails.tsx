@@ -7,6 +7,8 @@ import {
   fetchCharactersInEpisode 
 } from '../features/episodesSlice';
 import styles from '../styles/EpisodeDetails.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { ArrowBack } from '../assets/icons';
 
 export const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,8 +42,8 @@ export const EpisodeDetails = () => {
         <div className={styles.episodeHeader}>
           <Link to="/episodes" className={styles.episodeDetailsGoBack}>
             <span className={styles.goBackContent}>
-              <img 
-                src="/src/images/icons/arrow_back_24px.svg" 
+              <SvgIcon 
+                iconUrl={ArrowBack}
                 alt="Back" 
                 className={styles.backArrow}
               />

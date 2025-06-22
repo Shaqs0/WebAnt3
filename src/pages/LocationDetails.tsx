@@ -7,6 +7,8 @@ import {
   fetchResidents 
 } from '../features/locationsSlice';
 import styles from '../styles/LocationDetails.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { ArrowBack } from '../assets/icons';
 
 export const LocationDetails= () => {
   const { id } = useParams<{ id: string }>();
@@ -40,8 +42,8 @@ export const LocationDetails= () => {
         <div className={styles.locationHeader}>
           <Link to="/locations" className={styles.goBack}>
             <span className={styles.goBackContent}>
-              <img 
-                src="/src/images/icons/arrow_back_24px.svg" 
+              <SvgIcon
+                iconUrl={ArrowBack}
                 alt="Back" 
                 className={styles.backArrow}
               />

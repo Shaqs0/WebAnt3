@@ -4,6 +4,8 @@ import axios from 'axios';
 import type { Character } from '../interfaces/character';
 import type { Episode } from '../interfaces/episode';
 import styles from '../styles/CharacterDetails.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { ChevronArrow } from '../assets/icons';
 
 export const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -104,8 +106,8 @@ export const CharacterDetails = () => {
                     className={styles.characterDetailsLocation}
                   >
                     <span>{character.location.name}</span>
-                    <img 
-                      src="/src/images/icons/chevron_right_24px.svg" 
+                    <SvgIcon 
+                      iconUrl={ChevronArrow}
                       alt="" 
                       className={styles.locationArrow} 
                     />
@@ -139,8 +141,8 @@ export const CharacterDetails = () => {
                         })}
                       </small>
                     </div>
-                    <img 
-                      src="/src/images/icons/chevron_right_24px.svg" 
+                    <SvgIcon
+                     iconUrl={ChevronArrow}
                       alt="" 
                       className={styles.episodeArrow} 
                     />

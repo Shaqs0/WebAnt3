@@ -8,6 +8,8 @@ import {
 } from '../features/locationsSlice';
 import { LocationCard } from '../components/ui/LocationCard';
 import styles from '../styles/Locations.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { ArrowDropDown, CloseIcon, FilterList, SearchIcon } from '../assets/icons';
 
 export const Locations = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -94,7 +96,7 @@ export const Locations = () => {
   return (
     <main className={styles.mainContent}>
       <div className={styles.imgContainer}>
-        <img src="/src/images/locations.png" alt="Locations banner" />
+        <img src="src/assets/images/locaions.png" alt="Locations banner" />
       </div>
 
       <div className={styles.filtersContainer}>
@@ -103,7 +105,7 @@ export const Locations = () => {
           onSubmit={(e) => e.preventDefault()} 
         >
           <div className={styles.searchInputContainer}>
-            <img src="/src/images/icons/search_icon.svg" alt="Search" className={styles.searchIcon} />
+            <SvgIcon iconUrl={SearchIcon} alt="Search" className={styles.searchIcon} />
             <input
               type="text"
               value={inputValue}
@@ -123,7 +125,7 @@ export const Locations = () => {
                 <option key={type} value={type}>{type}</option>
               ))}
             </select>
-            <img src="/src/images/icons/arrow-drop-down.svg" alt="▼" className={styles.selectArrow} />
+            <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
           </div>
           <div className={styles.selectWrapper}>
             <select
@@ -136,11 +138,11 @@ export const Locations = () => {
                 <option key={dim} value={dim}>{dim}</option>
               ))}
             </select>
-            <img src="/src/images/icons/arrow-drop-down.svg" alt="▼" className={styles.selectArrow} />
+             <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
           </div>
         </form>
         <button className={styles.mobileFiltersBtn} onClick={openModal}>
-          <img src="/src/images/icons/filter_list_24px.svg" alt="Filter icon" />
+         <SvgIcon iconUrl={FilterList} className={styles.searchIcon} />
           ADVANCED FILTERS
         </button>
       </div>
@@ -150,9 +152,8 @@ export const Locations = () => {
           <div className={styles.filtersModalContent} onClick={e => e.stopPropagation()}>
             <div className={styles.filtersModalHeader}>
               <p>Filters</p>
-              <img 
-                src="/src/images/icons/close_24px.svg" 
-                alt="Close modal" 
+              <SvgIcon 
+                iconUrl={CloseIcon}
                 className={styles.closeModalBtn} 
                 onClick={() => setShowModal(false)}
               />
@@ -169,7 +170,7 @@ export const Locations = () => {
                   <option key={type} value={type}>{type}</option>
                 ))}
               </select>
-              <img src="/src/images/icons/arrow-drop-down.svg" alt="▼" className={styles.selectArrow} />
+              <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
             </div>
 
             <div className={styles.modalSelectWrapper}>
@@ -183,7 +184,7 @@ export const Locations = () => {
                   <option key={dim} value={dim}>{dim}</option>
                 ))}
               </select>
-              <img src="/src/images/icons/arrow-drop-down.svg" alt="▼" className={styles.selectArrow} />
+              <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
             </div>
 
             <button 

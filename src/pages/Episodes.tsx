@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import type { RootState, AppDispatch } from '../store';
 import { fetchEpisodes, setSearchQuery } from '../features/episodesSlice';
 import styles from '../styles/Episodes.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { SearchIcon } from '../assets/icons';
 
 export const Episodes = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,14 +31,13 @@ export const Episodes = () => {
   return (
     <main className={styles.mainContent}>
       <div className={styles.imgContainer}>
-        <img src="/src/images/episodes.png" alt="Episodes banner" />
+        <img src="src/assets/images/episodes.png" alt="Episodes banner" />
       </div>
 
       <div className={styles.filtersContainer}>
         <div className={styles.searchInputContainer}>
-          <img 
-            src="/src/images/icons/search_icon.svg" 
-            alt="Search" 
+          <SvgIcon
+            iconUrl={SearchIcon}
             className={styles.searchIcon} 
           />
           <input

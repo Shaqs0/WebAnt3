@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styles from '../styles/Header.module.css';
+import SvgIcon from '../components/ui/SvgIcon';
+import { Logo } from '../assets/icons';
 
 export function Layout() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +17,11 @@ export function Layout() {
 			<header className={styles.head}>
 				<div className={styles.headerLogo}>
 					<Link to="/">
-						<img src="src/assets/icons/header_logo.svg" alt="Rick and Morty Logo" />
+						<SvgIcon
+						iconUrl={Logo}
+						height={49}
+						width={46} 
+						/>
 					</Link>
 				</div>
 				<div 

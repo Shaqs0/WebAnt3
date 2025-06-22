@@ -3,6 +3,8 @@ import type {ChangeEvent} from 'react'
 import styles from '../../styles/Characters.module.css';
 import { useDispatch } from 'react-redux';
 import { setFilters, resetFilters } from '../../features/charactersSlice';
+import SvgIcon from './SvgIcon';
+import { ArrowDropDown, CloseIcon, FilterList, SearchIcon } from '../../assets/icons';
 
 interface FiltersProps {
   filters: {
@@ -52,9 +54,8 @@ export function Filters({
       <div className={styles.filtersContainer}>
         <form className={styles.filtersForm} onSubmit={(e) => e.preventDefault()}>
           <div className={`${styles.searchInputContainer} ${styles.selectWrapper}`}>
-            <img 
-              src="/src/images/icons/search_icon.svg" 
-              alt="Search" 
+            <SvgIcon 
+              iconUrl={SearchIcon} 
               className={styles.searchIcon} 
             />
             <input
@@ -80,9 +81,8 @@ export function Filters({
               <option value="Human">Human</option>
               <option value="Alien">Alien</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+               <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
@@ -99,9 +99,8 @@ export function Filters({
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+            <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
@@ -118,9 +117,8 @@ export function Filters({
               <option value="alive">Alive</option>
               <option value="dead">Dead</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+            <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
@@ -130,10 +128,10 @@ export function Filters({
           onClick={toggleModal}
           type="button"
         >
-          <img 
-            src="/src/images/icons/filter_list_24px.svg" 
-            alt="Filter icon" 
-          />
+           <SvgIcon 
+              iconUrl={FilterList}
+              className={styles.searchIcon} 
+            />
           ADVANCED FILTERS
         </button>
       </div>
@@ -148,10 +146,10 @@ export function Filters({
               aria-label="Close filters modal"
               type="button"
             >
-              <img 
-                src="/src/images/icons/close_24px.svg" 
-                alt="Close" 
-              />
+              <SvgIcon 
+              iconUrl={CloseIcon} 
+              className={styles.selectArrow} 
+            />
             </button>
           </div>
 
@@ -167,9 +165,8 @@ export function Filters({
               <option value="Human">Human</option>
               <option value="Alien">Alien</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+              <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
@@ -186,9 +183,8 @@ export function Filters({
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+             <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
@@ -205,9 +201,8 @@ export function Filters({
               <option value="alive">Alive</option>
               <option value="dead">Dead</option>
             </select>
-            <img 
-              src="/src/images/icons/arrow-drop-down.svg" 
-              alt="▼" 
+             <SvgIcon 
+              iconUrl={ArrowDropDown} 
               className={styles.selectArrow} 
             />
           </div>
