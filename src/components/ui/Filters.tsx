@@ -1,5 +1,8 @@
-import type { ChangeEvent } from 'react';
-import styles from '../../styles/Characters.module.css'; 
+import { useEffect, useState } from 'react';
+import type {ChangeEvent} from 'react'
+import styles from '../../styles/Characters.module.css';
+import { useDispatch } from 'react-redux';
+import { setFilters, resetFilters } from '../../features/charactersSlice';
 
 interface FiltersProps {
   filters: {
@@ -9,11 +12,41 @@ interface FiltersProps {
     status: string;
   };
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  onReset: () => void;
   isModalOpen: boolean;
   toggleModal: () => void;
 }
 
-export function Filters({ filters, onChange, isModalOpen, toggleModal }: FiltersProps) {
+export function Filters({ 
+  filters, 
+  onChange, 
+  isModalOpen, 
+  toggleModal 
+}: FiltersProps) {
+  const dispatch = useDispatch();
+  const [localName, setLocalName] = useState(filters.name);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localName === '') {
+        dispatch(resetFilters());
+      } else if (localName !== filters.name) {
+        dispatch(setFilters({ name: localName }));
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [localName, dispatch]);
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLocalName(e.target.value);
+  };
+
+  const handleOtherFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    onChange(e);
+  };
+
+
   return (
     <>
       <div className={styles.filtersContainer}>
@@ -29,8 +62,8 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="name"
               name="name"
               placeholder="Filter by name..."
-              value={filters.name}
-              onChange={onChange}
+              value={localName}
+              onChange={handleNameChange}
               className={`${styles.filterInput} ${styles.searchInput}`}
             />
           </div>
@@ -40,13 +73,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="species" 
               name="species" 
               value={filters.species}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Species</option>
               <option value="Human">Human</option>
               <option value="Alien">Alien</option>
-              <option value="Animal">Animal</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 
@@ -60,14 +92,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="gender" 
               name="gender" 
               value={filters.gender}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Genderless">Genderless</option>
-              <option value="unknown">Unknown</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 
@@ -81,13 +111,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="status" 
               name="status" 
               value={filters.status}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Status</option>
               <option value="alive">Alive</option>
               <option value="dead">Dead</option>
-              <option value="unknown">Unknown</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 
@@ -131,13 +160,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="modal-species" 
               name="species" 
               value={filters.species}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Species</option>
               <option value="Human">Human</option>
               <option value="Alien">Alien</option>
-              <option value="Animal">Animal</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 
@@ -151,14 +179,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="modal-gender" 
               name="gender" 
               value={filters.gender}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Genders</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Genderless">Genderless</option>
-              <option value="unknown">Unknown</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 
@@ -172,13 +198,12 @@ export function Filters({ filters, onChange, isModalOpen, toggleModal }: Filters
               id="modal-status" 
               name="status" 
               value={filters.status}
-              onChange={onChange}
+              onChange={handleOtherFilterChange}
               className={styles.filterSelect}
             >
               <option value="">Statuses</option>
               <option value="alive">Alive</option>
               <option value="dead">Dead</option>
-              <option value="unknown">Unknown</option>
             </select>
             <img 
               src="/src/images/icons/arrow-drop-down.svg" 

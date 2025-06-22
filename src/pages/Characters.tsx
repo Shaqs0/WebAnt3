@@ -1,37 +1,41 @@
-import { useState } from 'react';
-import { useCharacters } from '../hooks/useCharacters';
+import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState, AppDispatch } from '../store';
 import styles from '../styles/Characters.module.css';
 import { CharacterCard } from '../components/ui/CharactersCard';
 import { Filters } from '../components/ui/Filters';
-import SvgIcon from '../components/ui/SvgIcon';
+import { fetchCharactersThunk, setFilters, setPage, resetFilters } from '../features/charactersSlice';
 
 export function Characters() {
-  const [filters, setFilters] = useState({
-    name: '',
-    species: '',
-    gender: '',
-    status: ''
-  });
-  const [page, setPage] = useState(1);
+  const dispatch = useDispatch<AppDispatch>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const { characters, loading, hasMore, error } = useCharacters(filters, page);
+  const { characters, loading, hasMore, error, filters, page } = useSelector(
+    (state: RootState) => state.characters
+  );
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  useEffect(() => {
+    dispatch(fetchCharactersThunk({ filters, page }));
+  }, [filters, page, dispatch]);
+
+  const handleFilterChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFilters(prev => ({ ...prev, [name]: value }));
-    setPage(1);
-  };
+    dispatch(setFilters({ [name]: value }));
+  }, [dispatch]);
 
-  const handleLoadMore = () => {
+  const handleResetFilters = useCallback(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
+
+  const handleLoadMore = useCallback(() => {
     if (!loading && hasMore) {
-      setPage(prev => prev + 1);
+      dispatch(setPage(page + 1));
     }
-  };
+  }, [loading, hasMore, page, dispatch]);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(prev => !prev);
+  }, []);
 
   return (
     <main className={styles.mainContent}>
@@ -42,13 +46,13 @@ export function Characters() {
       <Filters 
         filters={filters}
         onChange={handleFilterChange}
+        onReset={handleResetFilters}
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
       />
 
       {error && (
         <div className={styles.error}>
-          <SvgIcon iconUrl='src/assets/icons/close_24px.svg' width={20} height={20} />
           {error}
         </div>
       )}
@@ -70,8 +74,7 @@ export function Characters() {
             ) : (
               !loading && (
                 <div className={styles.noResults}>
-                  <SvgIcon iconUrl='src/assets/icons/search_icon.svg' width={40} height={40} />
-                  No characters found
+                 
                 </div>
               )
             )}

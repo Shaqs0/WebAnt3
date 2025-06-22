@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './layout/Layout';
-import { Characters, Episodes, Locations } from './pages';
-// import { Provider } from 'react-redux'
-// import { store } from './store/store'
+import { CharacterDetails, Characters, Episodes, Locations } from './pages';
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 const router = createBrowserRouter([
 	{
@@ -23,15 +23,19 @@ const router = createBrowserRouter([
 			{
 				path:'/locations',
 				element: <Locations/>
-			}
+			},
+			{
+				path: '/character/:id', 
+				element: <CharacterDetails />,
+			},
 		]
 	}
 ]);
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		{/* <Provider store={store}> */}
+		<Provider store={store}>
 		<RouterProvider router = {router}/>
-		{/* </Provider> */}
+		</Provider>
 	</StrictMode>,
 );
