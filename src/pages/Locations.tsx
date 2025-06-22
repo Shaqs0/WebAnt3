@@ -160,32 +160,32 @@ export const Locations = () => {
             </div>
 
             <div className={styles.modalSelectWrapper}>
-              <select
-                value={modalFilters.type}
-                onChange={(e) => setModalFilters(prev => ({ ...prev, type: e.target.value }))}
-                className={styles.filterSelect}
-              >
-                <option value="">All Types</option>
-                {filterOptions.types.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
-              </select>
-              <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
-            </div>
+            <select
+              value={modalFilters.type}
+              onChange={(e) => setModalFilters(prev => ({ ...prev, type: e.target.value }))}
+              className={styles.filterSelect}
+            >
+              <option value="">All Types</option>
+              {filterOptions.types.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+            <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
+          </div>
 
-            <div className={styles.modalSelectWrapper}>
-              <select
-                value={modalFilters.dimension}
-                onChange={(e) => setModalFilters(prev => ({ ...prev, dimension: e.target.value }))}
-                className={styles.filterSelect}
-              >
-                <option value="">All Dimensions</option>
-                {filterOptions.dimensions.map(dim => (
-                  <option key={dim} value={dim}>{dim}</option>
-                ))}
-              </select>
-              <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
-            </div>
+          <div className={styles.modalSelectWrapper}>
+            <select
+              value={modalFilters.dimension}
+              onChange={(e) => setModalFilters(prev => ({ ...prev, dimension: e.target.value }))}
+              className={styles.filterSelect}
+            >
+              <option value="">All Dimensions</option>
+              {filterOptions.dimensions.map(dim => (
+                <option key={dim} value={dim}>{dim}</option>
+              ))}
+            </select>
+            <SvgIcon iconUrl={ArrowDropDown} alt="▼" className={styles.selectArrow} />
+          </div>
 
             <button 
               className={styles.applyFiltersBtn} 

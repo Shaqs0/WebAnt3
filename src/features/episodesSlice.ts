@@ -79,10 +79,16 @@ const episodesSlice = createSlice({
   reducers: {
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
+      state.currentPage = 1; 
+      state.episodes = []; 
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
     },
     resetEpisodes: (state) => {
       state.episodes = [];
       state.currentPage = 1;
+      state.hasMore = true;
     },
   },
   extraReducers: (builder) => {
@@ -101,6 +107,7 @@ const episodesSlice = createSlice({
       .addCase(fetchEpisodes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+        state.episodes = [];
       })
       .addCase(fetchEpisodeById.pending, (state) => {
         state.loading = true;
@@ -127,5 +134,5 @@ const episodesSlice = createSlice({
   },
 });
 
-export const { setSearchQuery, resetEpisodes } = episodesSlice.actions;
+export const { setSearchQuery, setPage, resetEpisodes } = episodesSlice.actions;
 export default episodesSlice.reducer;

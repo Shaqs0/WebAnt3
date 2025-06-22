@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import type { RootState, AppDispatch } from '../store';
-import { fetchEpisodes, setSearchQuery } from '../features/episodesSlice';
+import { fetchEpisodes, setSearchQuery, setPage } from '../features/episodesSlice';
 import styles from '../styles/Episodes.module.css';
 import SvgIcon from '../components/ui/SvgIcon';
 import { SearchIcon } from '../assets/icons';
@@ -19,14 +19,14 @@ export const Episodes = () => {
   } = useSelector((state: RootState) => state.episodes);
 
   useEffect(() => {
-    dispatch(fetchEpisodes({ searchQuery, page: 1 }));
-  }, [searchQuery, dispatch]);
+    dispatch(fetchEpisodes({ searchQuery, page: currentPage }));
+  }, [searchQuery, currentPage, dispatch]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     if (!loading && hasMore) {
-      dispatch(fetchEpisodes({ searchQuery, page: currentPage + 1 }));
+      dispatch(setPage(currentPage + 1));
     }
-  };
+  }, [loading, hasMore, currentPage, dispatch]);
 
   return (
     <main className={styles.mainContent}>

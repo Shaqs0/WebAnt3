@@ -371,6 +371,39 @@ box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 4px 0px rgba(0, 0, 0, 0
     cursor: not-allowed;
 }
 
+.modalSelectWrapper {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.filterSelect {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  padding-right: 40px; 
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: white;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+}
+
+.selectArrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
 
 @media (max-width: 1100px) {
   .locationsContainer {

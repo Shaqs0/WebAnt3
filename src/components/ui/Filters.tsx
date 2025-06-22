@@ -71,7 +71,6 @@ export function Filters({
     { value: 'Unknown', label: 'Unknown' }
   ];
 
-  
   const statusOptions = [
     { value: '', label: 'Status' },
     { value: 'Alive', label: 'Alive' },
@@ -176,17 +175,11 @@ export function Filters({
         <div className={styles.filtersModalContent}>
           <div className={styles.filtersModalHeader}>
             <p>Filters</p>
-            <button 
-              onClick={toggleModal}
-              className={styles.closeModalBtn}
-              aria-label="Close filters modal"
-              type="button"
-            >
               <SvgIcon 
                 iconUrl={CloseIcon} 
-                className={styles.selectArrow} 
+                className={styles.closeIcon} 
+                onClick={toggleModal}
               />
-            </button>
           </div>
 
           <div className={styles.modalSelectWrapper}>
@@ -248,14 +241,6 @@ export function Filters({
               className={styles.selectArrow} 
             />
           </div>
-          
-          <button 
-            className={styles.applyFiltersBtn}
-            onClick={toggleModal}
-            type="button"
-          >
-            APPLY
-          </button>
         </div>
       </div>
     </>
