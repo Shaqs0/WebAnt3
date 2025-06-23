@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Location, ApiResponse } from '../interfaces/locations';
 import type { Character } from '../interfaces/character';
+import { PREFIX } from '../helpers/API';
 
 interface LocationsState {
   locations: Location[];
@@ -85,7 +86,7 @@ export const fetchResidents = createAsyncThunk(
       if (residentUrls.length === 0) return [];
       
       const ids = residentUrls.map(url => url.split('/').pop()).join(',');
-      const response = await fetch(`https://rickandmortyapi.com/api/character/${ids}`);
+      const response = await fetch(`${PREFIX}/character/${ids}`);
       if (!response.ok) throw new Error('Failed to load residents');
       
       const data = await response.json();
@@ -104,7 +105,7 @@ export const loadAllLocations = createAsyncThunk(
       let nextPage = 1;
       
       while (nextPage) {
-        const response = await fetch(`https://rickandmortyapi.com/api/location?page=${nextPage}`);
+        const response = await fetch(`${PREFIX}/location?page=${nextPage}`);
         const data = await response.json() as ApiResponse;
         allLocations = [...allLocations, ...data.results];
         nextPage = data.info.next ? nextPage + 1 : 0;

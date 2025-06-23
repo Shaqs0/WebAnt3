@@ -6,6 +6,7 @@ import type { Episode } from '../interfaces/episode';
 import styles from '../styles/CharacterDetails.module.css';
 import SvgIcon from '../components/ui/SvgIcon';
 import { ArrowBack, ChevronArrow } from '../assets/icons';
+import { PREFIX } from '../helpers/API';
 
 export const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,7 @@ export const CharacterDetails = () => {
         setError(null);
 
         const characterRes = await axios.get<Character>(
-          `https://rickandmortyapi.com/api/character/${id}`
+          `${PREFIX}/character/${id}`
         );
         setCharacter(characterRes.data);
 

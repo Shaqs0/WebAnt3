@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Episode, ApiResponse } from '../interfaces/episode';
 import type { Character } from '../interfaces/character';
+import { PREFIX } from '../helpers/API';
 
 interface EpisodesState {
   episodes: Episode[];
@@ -33,7 +34,7 @@ export const fetchEpisodes = createAsyncThunk(
       if (searchQuery) params.append('name', searchQuery);
       params.append('page', page.toString());
       
-      const response = await fetch(`https://rickandmortyapi.com/api/episode?${params}`);
+      const response = await fetch(`${PREFIX}/episode?${params}`);
       if (!response.ok) throw new Error('Failed to fetch episodes');
       
       return await response.json() as ApiResponse;
@@ -47,7 +48,7 @@ export const fetchEpisodeById = createAsyncThunk(
   'episodes/fetchEpisodeById',
   async (id: string, { rejectWithValue }) => {
     try {
-      const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+      const response = await fetch(`${PREFIX}/episode/${id}`);
       if (!response.ok) throw new Error('Episode not found');
       
       return await response.json() as Episode;
@@ -62,7 +63,7 @@ export const fetchCharactersInEpisode = createAsyncThunk(
   async (characterUrls: string[], { rejectWithValue }) => {
     try {
       const ids = characterUrls.map(url => url.split('/').pop()).join(',');
-      const response = await fetch(`https://rickandmortyapi.com/api/character/${ids}`);
+      const response = await fetch(`${PREFIX}/character/${ids}`);
       if (!response.ok) throw new Error('Failed to load characters');
       
       const data = await response.json();
